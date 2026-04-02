@@ -1,8 +1,6 @@
 import {
-  HeadContent,
   Navigate,
   Outlet,
-  Scripts,
   createRootRoute,
   useRouterState,
 } from "@tanstack/react-router";
@@ -14,38 +12,18 @@ import "../styles/globals.css";
 import "../styles/theme.css";
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AdBox — Service Monitor" },
-    ],
-    links: [
-      { rel: "icon", href: "/logo.png", type: "image/png" },
-      { rel: "apple-touch-icon", href: "/logo.png" },
-      { rel: "manifest", href: "/manifest.json" },
-    ],
-  }),
-  component: RootDocument,
+  component: RootShell,
 });
 
-function RootDocument() {
+function RootShell() {
   return (
-    <html lang="en" data-theme="dark">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <ThemeProvider>
-          <AuthProvider>
-            <SocketProvider>
-              <AppFrame />
-            </SocketProvider>
-          </AuthProvider>
-        </ThemeProvider>
-        <Scripts />
-      </body>
-    </html>
+    <ThemeProvider>
+      <AuthProvider>
+        <SocketProvider>
+          <AppFrame />
+        </SocketProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 
